@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="SimpleLogin.SimpleLogin" needsEntityContext="false" xmlns="http://www.mendix.com/widget/1.0/">
+  <name>SimpleLogin Widget</name>
+  <description>Feedback button dat triggers microflow for custom handling</description>
+
+  <icon></icon>
+
+  <properties>
+		<property key="urlMf" type="microflow" required="false" >
+            <caption>Enviroment URL</caption>
+            <category>General</category>
+            <description>Let this MF return the environment URL without traling slash</description>
+            <returnType type="String"/>
+        </property>
+		<property key="usernameLabel" type="string" required="false" defaultValue="Username" >
+            <caption>Username</caption>
+            <category>Labels</category>
+            <description></description>
+        </property>
+        <property key="passwordLabel" type="string" required="false" defaultValue="Password" >
+            <caption>Password</caption>
+            <category>Labels</category>
+            <description></description>
+        </property>
+        <property key="chooseShortCodeHelpText" type="string" required="false"  defaultValue="Choose a short login code" >
+            <caption>Choose short code</caption>
+            <category>Labels</category>
+            <description>Helper text for choose short code</description>
+        </property>
+        <property key="giveLoginCodeText" type="string" required="false"  defaultValue="Put in your short login code" >
+            <caption>Login code</caption>
+            <category>Labels</category>
+            <description>Helper text above login code</description>
+        </property>
+        <property key="rechooseCodeText" type="string" required="false"  defaultValue="Rechoose short login code (forgotten)" >
+            <caption>Rechoose</caption>
+            <category>Labels</category>
+            <description></description>
+        </property>
+        <property key="progressBarText" type="string" required="false"  defaultValue="Logging in.." >
+            <caption>Progress bar</caption>
+            <category>Labels</category>
+            <description></description>
+        </property>
+        <property key="loginFailed" type="string" required="false"  defaultValue="Logging in failed" >
+            <caption>Login error message</caption>
+            <category>Labels</category>
+            <description></description>
+        </property>
+     </properties>
+</widget>

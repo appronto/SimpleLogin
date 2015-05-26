@@ -1,0 +1,30 @@
+<div class="mobileLogin">
+	<div class="loginContainer">
+		<div id="fulllogin" style="display: none;">
+			<div id="errormessages" style="display: none;"></div>
+			<label id="usernamelabel" autocapitalize="off" autocorrect="off" style="display:block;"></label>
+			<input id="username" type="text" style="width:100%" />
+			<label id="passwordlabel" autocapitalize="off" autocorrect="off" style="display:block;"></label>
+			<input id="password" type="password" style="width:100%" />
+			<label id="chooseshortcode" style="display:block;"></label>
+			<div class="shortcode">
+				<input id="inlog1" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'inlog2\').focus() };" onfocus="this.value = \'\'" /> 						
+				<input id="inlog2" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'inlog3\').focus() };" onfocus="this.value = \'\'" /> 						
+				<input id="inlog3" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'inlog4\').focus() };" onfocus="this.value = \'\'" /> 						
+				<input id="inlog4" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'inlog5\').focus() };" onfocus="this.value = \'\'" /> 						
+				<input id="inlog5" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.hitch(globalLoginRef, globalLoginRef.submitFullLogin)(); };" onfocus="this.value = \'\'" />
+			</div>
+		</div>
+		<div id="quicklogin" style="display: none">
+			<label id="givelogincode" style="display:block;"></label>
+			<div class="shortcode">
+				<input id="qinlog1" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'qinlog2\').focus() };" onfocus="this.value = \'\'" /> 					
+				<input id="qinlog2" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'qinlog3\').focus() };" onfocus="this.value = \'\'" /> 					
+				<input id="qinlog3" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'qinlog4\').focus() };" onfocus="this.value = \'\'" /> 					
+				<input id="qinlog4" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'qinlog5\').focus() };" onfocus="this.value = \'\'" /> 					
+				<input id="qinlog5" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.hitch(globalLoginRef, globalLoginRef.submitQuickLogin)(); };" onfocus="this.value = \'\'" /> 				
+			</div>
+			<input type="button" onclick="dojo.hitch(globalLoginRef, globalLoginRef.reset)();" id="rechoose" class="button" />
+		</div>
+	</div>
+</div>

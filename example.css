@@ -1,0 +1,91 @@
+.profile-phone .mobileLogin {
+    font-size: 14px;
+    padding:20px;
+}
+.profile-phone .mobileLogin input {
+    border: 1px solid #ccc;
+	display: block;
+	padding: 8px;
+	width: 100%;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #555;
+	vertical-align: middle;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.profile-phone .mobileLogin input[type=number] {
+	width: 18%;
+	margin-right:2%;
+	float:left;	
+}
+.profile-phone .mobileLogin label {
+	font-weight:bold;
+}
+
+/* Verberg pijtljes FF en Webkit */
+.profile-phone .mobileLogin input[type=number] {
+-moz-appearance: textfield;
+}
+.profile-phone .mobileLogin input[type=number]::-moz-inner-spin-button, 
+.profile-phone .mobileLogin input[type=number]::-moz-outer-spin-button,
+.profile-phone .mobileLogin input[type=number]::-webkit-inner-spin-button, 
+.profile-phone .mobileLogin input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+     margin: 0; 
+}
+.profile-phone #quicklogin input.button {
+	  border: 0 none;
+    color: #c93c44;
+    font-style: italic;
+    font-weight: normal;
+    padding: 2px;
+    text-align: left;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	width: auto;
+	margin-top: 20px;
+}
+.profile-phone #quicklogin input.button:hover {
+	background: none !important;
+		
+}
+.profile-phone #errormessages {
+    background-color: #f7cdcf;
+    border: 1px solid #f2babc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.profile-phone #fulllogin input.button {
+	background-color: #C93C44 !important;
+	border-color: #C93C44 !important;
+	color: #FFFFFF;
+	margin-top: 20px;	
+	width: 100%;
+	font-weight:bold;
+}
+.profile-phone .mobileLogin input.button:hover:focus,
+.profile-phone .mobileLogin input.button:hover:active,
+.profile-phone .mobileLogin input.button:active:focus,
+.profile-phone .mobileLogin input.button:active:hover,
+.profile-phone .mobileLogin input.button:active,
+.profile-phone .mobileLogin input.button:focus,
+.profile-phone .mobileLogin input.button:hover {
+	background: #c93c44 !important;
+	border-color: #c93c44 !important;
+	opacity: 0.8;	
+	outline: 0 solid;
+}
+
