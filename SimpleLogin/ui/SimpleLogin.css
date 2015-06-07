@@ -52,6 +52,7 @@
 	left:0;
 	height:50px;
 	color:transparent;
+	-webkit-text-fill-color:transparent;
 	overflow:hidden;
 }
 .mobileLogin .loginButton {
