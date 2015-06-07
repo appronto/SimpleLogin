@@ -4,7 +4,7 @@ var globalLoginRef;
 mendix.widget.declare("SimpleLogin.SimpleLogin", {
     addons         : [dijit._Templated],
     
-    templateString : '<div class="mobileLogin"><div class="loginContainer"><div id="errormessages" style="display: none;"></div><div id="fulllogin" style="display: none;"><label id="usernamelabel" autocapitalize="off" autocorrect="off" style="display:block;"></label><input id="username" type="text" style="width:100%" /><label id="passwordlabel" autocapitalize="off" autocorrect="off" style="display:block;"></label><input id="password" type="password" style="width:100%" /><label id="chooseshortcode" style="display:block;"></label><div class="shortcode"><input id="inlog1" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'inlog2\').focus() };" onfocus="this.value = \'\'" /> 						<input id="inlog2" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'inlog3\').focus() };" onfocus="this.value = \'\'" /> 						<input id="inlog3" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'inlog4\').focus() };" onfocus="this.value = \'\'" /> 						<input id="inlog4" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'inlog5\').focus() };" onfocus="this.value = \'\'" /> 						<input id="inlog5" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.hitch(globalLoginRef, globalLoginRef.submitFullLogin)(); };" onfocus="this.value = \'\'" /></div></div><div id="quicklogin" style="display: none"><label id="givelogincode" style="display:block;"></label><div class="shortcode"><input id="qinlog1" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'qinlog2\').focus() };" onfocus="this.value = \'\'" /> 					<input id="qinlog2" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'qinlog3\').focus() };" onfocus="this.value = \'\'" /> 					<input id="qinlog3" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'qinlog4\').focus() };" onfocus="this.value = \'\'" /> 					<input id="qinlog4" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.byId(\'qinlog5\').focus() };" onfocus="this.value = \'\'" /> 					<input id="qinlog5" type="number" pattern="[0-9]*" maxlength="1" onkeyup="if(this.value.length >= 1) { dojo.hitch(globalLoginRef, globalLoginRef.submitQuickLogin)(); };" onfocus="this.value = \'\'" /> 				</div><input type="button" onclick="dojo.hitch(globalLoginRef, globalLoginRef.reset)();" id="rechoose" class="button" /></div></div></div>',
+    templateString : '<div class="mobileLogin"><div class="loginContainer"><div id="errormessages" style="display: none;"></div><div id="fulllogin" style="display: none;"><label id="usernamelabel" style="display:block;"></label><input id="username" autocapitalize="off" autocorrect="off" type="text" style="width:100%" /><label id="passwordlabel" style="display:block;"></label><input id="password" autocapitalize="off" autocorrect="off"  type="password" style="width:100%" /><label id="chooseshortcode" style="display:block;"></label><div class="shortcode"><input id="inlog5" type="number" pattern="[0-9]*" maxlength="5" onkeyup="if(this.value.length >= 5) { dojo.hitch(globalLoginRef, globalLoginRef.submitFullLogin)(); };" onfocus="this.value = \'\'" /></div></div><div id="quicklogin" style="display: none"><label id="givelogincode" style="display:block;"></label><div class="shortcode"><input id="qinlog5" type="number" pattern="[0-9]*" maxlength="5" onkeyup="if(this.value.length >= 5) { dojo.hitch(globalLoginRef, globalLoginRef.submitQuickLogin)(); };" onfocus="this.value = \'\'" /> 				</div><input type="button" onclick="dojo.hitch(globalLoginRef, globalLoginRef.reset)();" id="rechoose" class="button" /></div></div></div>',
 
     inputargs: {
 		urlMf		: '',
@@ -57,7 +57,7 @@ mendix.widget.declare("SimpleLogin.SimpleLogin", {
 		if(this.guid != null){
 			// show quick login
 			dojo.byId("quicklogin").style.display = "block";
-			setTimeout(function() {dojo.byId("qinlog1").focus();}, 50);
+			setTimeout(function() {dojo.byId("qinlog5").focus();}, 50);
 		}
 		else {
 			// show default login
@@ -77,7 +77,7 @@ mendix.widget.declare("SimpleLogin.SimpleLogin", {
 		
 		var username = dojo.byId("username").value;
 		var password = dojo.byId("password").value;
-		var shortcode = dojo.byId("inlog1").value + dojo.byId("inlog2").value + dojo.byId("inlog3").value + dojo.byId("inlog4").value + dojo.byId("inlog5").value;
+		var shortcode = dojo.byId("inlog5").value;
 						
 		var xhrArgs = {
 		  url: this.hostname+"/registerAppDevice/",
@@ -95,7 +95,7 @@ mendix.widget.declare("SimpleLogin.SimpleLogin", {
 		this.blocker();
 		
 		this.removeError();
-		var shortcode = dojo.byId("qinlog1").value + dojo.byId("qinlog2").value + dojo.byId("qinlog3").value + dojo.byId("qinlog4").value + dojo.byId("qinlog5").value;
+		var shortcode = dojo.byId("qinlog5").value;
 		
 		var xhrArgs = {
 		  url: this.hostname+"/loginAppDevice/",
@@ -119,15 +119,7 @@ mendix.widget.declare("SimpleLogin.SimpleLogin", {
 	},
 
 	 resetFieldValues : function(){
-		dojo.byId("inlog1").value = "";
-		dojo.byId("inlog2").value = "";
-		dojo.byId("inlog3").value = "";
-		dojo.byId("inlog4").value = "";
 		dojo.byId("inlog5").value = "";
-		dojo.byId("qinlog1").value = "";
-		dojo.byId("qinlog2").value = "";
-		dojo.byId("qinlog3").value = "";
-		dojo.byId("qinlog4").value = "";
 		dojo.byId("qinlog5").value = "";
 		
 	},
