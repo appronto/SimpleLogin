@@ -1,0 +1,59 @@
+
+/**MOBILE LOGIN*/
+.mobileLogin label {
+	font-weight:bold;
+}
+
+/* Verberg pijtljes FF en Webkit */
+.mobileLogin input[type=number] {
+	-moz-appearance: textfield;
+}
+::-webkit-inner-spin-button { -webkit-appearance: none;}
+::-webkit-outer-spin-button { -webkit-appearance: none;}
+
+.mobileLogin input[type=number]::-moz-inner-spin-button, 
+.mobileLogin input[type=number]::-moz-outer-spin-button,
+.mobileLogin input[type=number]::-webkit-inner-spin-button, 
+.mobileLogin input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+     margin: 0; 
+}
+.position{
+	float:left;
+	width:50px;
+	height:50px;
+	line-height:40px;
+	background-color:#eee;
+	text-align:center;
+	vertical-align:middle;	
+	 font-size:20px;
+	 border-right:1px solid #ccc;
+}
+.positionselected {
+	border-bottom:2px solid #bbb;
+	box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  
+}
+.positionfilled {
+	border-bottom:2px solid #bbb;
+	box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  font-size:40px;
+	color:#d55058;
+	line-height:28px;
+}
+.mobileLogin .shortcodeinput {
+	width:250px;
+	position:absolute;
+	
+	left:0;
+	height:50px;
+	color:transparent;
+	overflow:hidden;
+}
+.mobileLogin .loginButton {
+	margin-top:10px;
+}

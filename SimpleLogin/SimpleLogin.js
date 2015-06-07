@@ -4,7 +4,7 @@ var globalLoginRef;
 mendix.widget.declare("SimpleLogin.SimpleLogin", {
     addons         : [dijit._Templated],
     
-    templateString : '<div class="mobileLogin"><div class="loginContainer"><div id="errormessages" style="display: none;"></div><div id="fulllogin" style="display: none;"><label id="usernamelabel" style="display:block;"></label><input id="username" autocapitalize="off" autocorrect="off" type="text" style="width:100%" /><label id="passwordlabel" style="display:block;"></label><input id="password" autocapitalize="off" autocorrect="off"  type="password" style="width:100%" /><label id="chooseshortcode" style="display:block;"></label><div class="shortcode"><input id="inlog5" type="number" pattern="[0-9]*" maxlength="5" onkeyup="if(this.value.length >= 5) { dojo.hitch(globalLoginRef, globalLoginRef.submitFullLogin)(); };" onfocus="this.value = \'\'" /></div></div><div id="quicklogin" style="display: none"><label id="givelogincode" style="display:block;"></label><div class="shortcode"><input id="qinlog5" type="number" pattern="[0-9]*" maxlength="5" onkeyup="if(this.value.length >= 5) { dojo.hitch(globalLoginRef, globalLoginRef.submitQuickLogin)(); };" onfocus="this.value = \'\'" /> 				</div><input type="button" onclick="dojo.hitch(globalLoginRef, globalLoginRef.reset)();" id="rechoose" class="button" /></div></div></div>',
+    templateString : '<div class="mobileLogin"><div class="loginContainer"><div id="errormessages" class="alert alert-danger" style="display: none;">.</div><div id="fulllogin" style="display: none;"><label id="usernamelabel" style="display:block;">.</label><input id="username" class="textinput form-control" autocapitalize="off" autocorrect="off" type="text" style="width:100%" /><label id="passwordlabel" style="display:block;">.</label><input id="password" class="textinput form-control" autocapitalize="off" autocorrect="off"  type="password" style="width:100%" /><label id="chooseshortcode" style="display:block;">.</label><div class="shortcode" style="width:100%;position:relative;"><div class="position" id="position1">.</div><div class="position" id="position2">.</div><div class="position" id="position3">.</div><div class="position" id="position4">.</div><div class="position" id="position5">.</div><input id="inlog5" type="number" class="shortcodeinput" pattern="[0-9]*" maxlength="5" style="background-color:transparent; border:0px;" onkeyup="dojo.hitch(globalLoginRef, globalLoginRef.submitFullLogin)();" onfocus="this.value = \'\'; dojo.hitch(globalLoginRef, globalLoginRef.inputChecker)(\'\');" /><div style="clear:both;visibility:hidden;height:0px;">.</div></div></div><div id="quicklogin" style="display: none"><label id="givelogincode" style="display:block;">.</label><div class="shortcode" style="width:100%;position:relative;"><div class="position" id="qposition1">.</div><div class="position" id="qposition2">.</div><div class="position" id="qposition3">.</div><div class="position" id="qposition4">.</div><div class="position" id="qposition5">.</div><input id="qinlog5" type="number" class="shortcodeinput" pattern="[0-9]*" maxlength="5" style="background-color:transparent; border:0px;" onkeyup="dojo.hitch(globalLoginRef, globalLoginRef.submitQuickLogin)();" onfocus="this.value = \'\'; dojo.hitch(globalLoginRef, globalLoginRef.inputChecker)(\'q\');" /><div style="clear:both;visibility:hidden;height:0px;">.</div></div><input type="button" style="display:block; clear:both;" onclick="dojo.hitch(globalLoginRef, globalLoginRef.reset)();" id="rechoose" class="btn btn-primary loginButton" /></div></div></div>',
 
     inputargs: {
 		urlMf		: '',
@@ -52,8 +52,6 @@ mendix.widget.declare("SimpleLogin.SimpleLogin", {
 		
     	this.guid = window.localStorage.getItem("devicecode");
 		
-		this.resetFieldValues();
-		
 		if(this.guid != null){
 			// show quick login
 			dojo.byId("quicklogin").style.display = "block";
@@ -70,43 +68,71 @@ mendix.widget.declare("SimpleLogin.SimpleLogin", {
     blocker : function(){
 		this.indicator.start();
 	},
+	inputChecker: function(q){
+		if(typeof q == 'undefined'){
+			q= "";
+		}
+		var shortcode = dojo.byId(q + "inlog5").value;
+		var position = shortcode.length + 1;
+		
+		for(var i=1;i<=5; i++){
+			var el = dojo.byId(q + "position" + i);
+			if(position==i){
+				dojo.removeClass(el, "positionfilled");
+				dojo.addClass(el, "positionselected");
+			}
+			else if(position < i){
+				dojo.removeClass(el,"positionfilled");
+				dojo.removeClass(el,"positionselected");
+			}
+			else {
+				dojo.addClass(el,"positionfilled");
+				dojo.addClass(el, "positionselected");
+			}
+			
+		}
+		return position==6;
+	},
+	
 	submitFullLogin : function(){
-		this.blocker();
-		
-		this.removeError();
-		
-		var username = dojo.byId("username").value;
-		var password = dojo.byId("password").value;
-		var shortcode = dojo.byId("inlog5").value;
-						
-		var xhrArgs = {
-		  url: this.hostname+"/registerAppDevice/",
-		  postData: "username=" + username + "&password=" + password + "&shortcode=" + shortcode,
-		  handleAs: "text",
-		  load: dojo.hitch(this, this.succesHandler),
-		  error: dojo.hitch(this, this.errorHandler)
-		};
-		
-		dojo.xhrPost(xhrArgs);
-		this.resetFieldValues();
+		if(this.inputChecker("")){
+			this.blocker();
+			
+			this.removeError();
+			
+			var username = dojo.byId("username").value;
+			var password = dojo.byId("password").value;
+			var shortcode = dojo.byId("inlog5").value;
+							
+			var xhrArgs = {
+			  url: this.hostname+"/registerAppDevice/",
+			  postData: "username=" + username + "&password=" + password + "&shortcode=" + shortcode,
+			  handleAs: "text",
+			  load: dojo.hitch(this, this.succesHandler),
+			  error: dojo.hitch(this, this.errorHandler)
+			};
+			
+			dojo.xhrPost(xhrArgs);
+		}
 	},
 	
 	 submitQuickLogin : function(){
-		this.blocker();
-		
-		this.removeError();
-		var shortcode = dojo.byId("qinlog5").value;
-		
-		var xhrArgs = {
-		  url: this.hostname+"/loginAppDevice/",
-		  postData: "device=" + this.guid + "&shortcode=" + shortcode,
-		  handleAs: "text",
-		  load: dojo.hitch(this, this.succesHandlerQuickLogin),
-		  error: dojo.hitch(this, this.errorHandler)
-		};
-		
-		dojo.xhrPost(xhrArgs);
-		this.resetFieldValues();
+		if(this.inputChecker("q")){
+			this.blocker();
+			
+			this.removeError();
+			var shortcode = dojo.byId("qinlog5").value;
+			
+			var xhrArgs = {
+			  url: this.hostname+"/loginAppDevice/",
+			  postData: "device=" + this.guid + "&shortcode=" + shortcode,
+			  handleAs: "text",
+			  load: dojo.hitch(this, this.succesHandlerQuickLogin),
+			  error: dojo.hitch(this, this.errorHandler)
+			};
+			
+			dojo.xhrPost(xhrArgs);
+		}
 	},
 
 
@@ -121,11 +147,14 @@ mendix.widget.declare("SimpleLogin.SimpleLogin", {
 	 resetFieldValues : function(){
 		dojo.byId("inlog5").value = "";
 		dojo.byId("qinlog5").value = "";
+		this.inputChecker();
 		
 	},
 	 errorHandler : function(){
 		dojo.byId("errormessages").innerHTML = this.loginFailed;
 		dojo.byId("errormessages").style.display = "block";
+		
+		this.resetFieldValues();
 		this.indicator.stop();
 	},
 	 removeError: function(){
