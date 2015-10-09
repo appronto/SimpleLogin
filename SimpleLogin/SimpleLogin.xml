@@ -6,7 +6,7 @@
   <icon></icon>
 
   <properties>
-		<property key="urlMf" type="microflow" required="false" >
+		<property key="urlMf" type="microflow" required="true" >
             <caption>Enviroment URL</caption>
             <category>General</category>
             <description>Let this MF return the environment URL without traling slash</description>
@@ -45,6 +45,23 @@
         <property key="loginFailed" type="string" required="false"  defaultValue="Logging in failed" >
             <caption>Login error message</caption>
             <category>Labels</category>
+            <description></description>
+        </property>
+		<property key="homeMf" type="microflow" required="true" >
+            <caption>Home microflow URL</caption>
+            <category>General</category>
+            <description>Let this microflow open your homepage</description>
+            <returnType type="Void"/>
+        </property>
+		<property key="alternativeLoginMf" type="microflow" required="false" >
+            <caption>Alternative login for mobile browsers</caption>
+            <category>General</category>
+            <description>Set this if you want mobile browser users (not cordova) to go to other login form / widget</description>
+            <returnType type="Void"/>
+        </property>
+		 <property key="lowerCaseInput" type="boolean" required="true"  defaultValue="true" >
+            <caption>Lowercase username input?</caption>
+            <category>General</category>
             <description></description>
         </property>
      </properties>
