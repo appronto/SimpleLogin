@@ -84,16 +84,18 @@ mendix.widget.declare("SimpleLogin.SimpleLogin", {
 			// show quick login
 			dojo.byId("quicklogin").style.display = "block";
 			
-			// werkt alleen op iphone
-			if(this.isCordova && device.platform != 'Android')
+			// Niet focussen op android, leidt tot 2 keer klikken. Enige flaw is nog android browsers. 
+			// Die focussen nu ook vanuit code (want !this.isCordova = true). Maar een focus op android leidt tot 2 keer moeten klikken.
+			if((this.isCordova && device.platform != 'Android') || !this.isCordova)
 				setTimeout(function() {dojo.byId("qinlog5").focus();}, 50);
 		}
 		else {
 			// show default login
 			dojo.byId("fulllogin").style.display = "block";
 			
-			// werkt alleen op iphone
-			if(this.isCordova && device.platform != 'Android')
+			// Niet focussen op android, leidt tot 2 keer klikken. Enige flaw is nog android browsers. 
+			// Die focussen nu ook vanuit code (want !this.isCordova = true). Maar een focus op android leidt tot 2 keer moeten klikken.
+			if((this.isCordova && device.platform != 'Android') || !this.isCordova)
 				setTimeout(function() {dojo.byId("username").focus();}, 50);
 
 		}    
@@ -157,7 +159,8 @@ mendix.widget.declare("SimpleLogin.SimpleLogin", {
 					
 						username	: username,
 						password	: password,
-						shortcode	: shortcode
+						shortcode	: shortcode,
+						cordova 	: this.isCordova
 
 				}),
 				handle		: dojo.hitch(this, this.succesHandler)
