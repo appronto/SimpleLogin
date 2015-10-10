@@ -83,12 +83,18 @@ mendix.widget.declare("SimpleLogin.SimpleLogin", {
 		if(this.guid != null){
 			// show quick login
 			dojo.byId("quicklogin").style.display = "block";
-			setTimeout(function() {dojo.byId("qinlog5").focus();}, 50);
+			
+			// werkt niet op android, inschakelen leidt tot 2 keer moeten klikken
+			if(this.isCordova && device.platform != 'Android')
+				setTimeout(function() {dojo.byId("qinlog5").focus();}, 50);
 		}
 		else {
 			// show default login
 			dojo.byId("fulllogin").style.display = "block";
-			setTimeout(function() {dojo.byId("username").focus();}, 50);
+			
+			// werkt niet op android, inschakelen leidt tot 2 keer moeten klikken
+			if(this.isCordova && device.platform != 'Android')
+				setTimeout(function() {dojo.byId("username").focus();}, 50);
 
 		}    
     },
@@ -130,7 +136,7 @@ mendix.widget.declare("SimpleLogin.SimpleLogin", {
 			
 			var username = dojo.byId("username").value.trim();
 			
-			if(this.toLowerCase)
+			if(this.lowerCaseInput)
 				username = username.toLowerCase();
 			
 			var password = dojo.byId("password").value;

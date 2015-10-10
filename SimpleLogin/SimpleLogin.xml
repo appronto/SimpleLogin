@@ -59,7 +59,7 @@
             <description>Set this if you want mobile browser users (not cordova) to go to other login form / widget</description>
             <returnType type="Void"/>
         </property>
-		 <property key="lowerCaseInput" type="boolean" required="true"  defaultValue="true" >
+		 <property key="lowerCaseInput" type="boolean" required="true"  defaultValue="false" >
             <caption>Lowercase username input?</caption>
             <category>General</category>
             <description></description>
