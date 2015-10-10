@@ -46,13 +46,11 @@
 	line-height:28px;
 }
 .mobileLogin .shortcodeinput {
+	/* width should be the sum of 5 * .position width + 5 * .position paddings */
 	width:250px;
 	position:absolute;
-	
 	left:0;
 	height:50px;
-	color:transparent;
-	-webkit-text-fill-color:transparent;
 	overflow:hidden;
 }
 .mobileLogin .loginButton {

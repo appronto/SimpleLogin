@@ -19,13 +19,14 @@
 		</div>
 		<div id="quicklogin" style="display: none">
 			<label id="givelogincode" style="display:block;">.</label>
+			<div><input id="doubletabandroidfixer" tabindex="2" autocapitalize="off" autocorrect="off" type="text" style="position:absolute; margin-left:-10000px;width:100px;" /></div>
 			<div class="shortcode" style="width:100%;position:relative;">
 				<div class="position" id="qposition1">.</div>
 				<div class="position" id="qposition2">.</div>
 				<div class="position" id="qposition3">.</div>
 				<div class="position" id="qposition4">.</div>
 				<div class="position" id="qposition5">.</div>
-				<input id="qinlog5" type="number" class="shortcodeinput" pattern="[0-9]*" maxlength="5" style="background-color:transparent; border:0px;" onkeyup="dojo.hitch(globalLoginRef, globalLoginRef.submitQuickLogin)();" onfocus="this.value = \'\'; dojo.hitch(globalLoginRef, globalLoginRef.inputChecker)(\'q\');  this.style.marginLeft=\'-10000px\';" onblur="this.value = \'\';this.style.marginLeft=\'0px\'"/>
+				<input id="qinlog5" type="number" tabindex="1" class="shortcodeinput" pattern="[0-9]*" maxlength="5" style="background-color:transparent; border:0px;" onkeyup="dojo.hitch(globalLoginRef, globalLoginRef.submitQuickLogin)();" onfocus="this.value = \'\'; dojo.hitch(globalLoginRef, globalLoginRef.inputChecker)(\'q\');  this.style.marginLeft=\'-10000px\';" onblur="this.value = \'\';this.style.marginLeft=\'0px\'"/>
 				<div style="clear:both;visibility:hidden;height:0px;">.</div>
 			</div>
 			<input type="button" style="display:block; clear:both;" onclick="dojo.hitch(globalLoginRef, globalLoginRef.reset)();" id="rechoose" class="btn btn-primary loginButton" />
