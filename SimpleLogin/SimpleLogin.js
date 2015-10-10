@@ -83,10 +83,18 @@ mendix.widget.declare("SimpleLogin.SimpleLogin", {
 		if(this.guid != null){
 			// show quick login
 			dojo.byId("quicklogin").style.display = "block";
+			
+			// werkt alleen op iphone
+			if(this.isCordova && device.platform != 'Android')
+				setTimeout(function() {dojo.byId("qinlog5").focus();}, 50);
 		}
 		else {
 			// show default login
 			dojo.byId("fulllogin").style.display = "block";
+			
+			// werkt alleen op iphone
+			if(this.isCordova && device.platform != 'Android')
+				setTimeout(function() {dojo.byId("username").focus();}, 50);
 
 		}    
     },
